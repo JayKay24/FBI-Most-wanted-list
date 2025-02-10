@@ -1,6 +1,6 @@
-const { Schema } = require('mongoose');
+const mongoose = require('mongoose');
 
-const WantedProfileSchema = new Schema({
+const WantedProfileSchema = new mongoose.Schema({
     name: { type: String, default: '' },
     sex: { type: String, default: '' },
     hair: { type: String, default: '' },

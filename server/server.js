@@ -16,4 +16,4 @@ app.listen(PORT, () => {
     console.log(`Server is listening at port ${PORT}`);
 });
 
-// cron.schedule('* * * * * *', beginETL);
+cron.schedule('* * * * *', beginETL);

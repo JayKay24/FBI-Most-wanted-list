@@ -1,6 +1,6 @@
-const { Schema } = require('mongoose');
+const mongoose = require('mongoose');
 
-const PurgeCycleSchema = new Schema({
+const PurgeCycleSchema = new mongoose.Schema({
     last_purge_date: { type: Date, default: Date.now }
 });
 
