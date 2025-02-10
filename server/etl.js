@@ -1,7 +1,7 @@
-let count = 1;
+const { httpClient } = require('./utils');
 
-function beginETL() {
-    console.log('ETL process has started...', count++);
+async function beginETL() {
+    console.log('ETL process has started...');
 }
 
 module.exports = {
