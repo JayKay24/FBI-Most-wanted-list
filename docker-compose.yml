@@ -1,7 +1,17 @@
 version: "3.9"
 
 services:
+  fbi_most_wanted_db:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    restart: always
+    volumes:
+      - fbi_data:/data/db
+
   server:
+    depends_on:
+      - fbi_most_wanted_db
     image: jaykay24/fbi-most-wanted:1.0.0
     ports:
       - "3000:3000"
@@ -14,3 +24,5 @@ services:
     ports:
       - "5173:5173"
     restart: always
+volumes:
+  fbi_data:

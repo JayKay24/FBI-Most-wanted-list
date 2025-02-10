@@ -1,6 +1,4 @@
-const { httpClient } = require('./utils');
-
-async function beginETL() {
+function beginETL() {
     console.log('ETL process has started...');
 }
 

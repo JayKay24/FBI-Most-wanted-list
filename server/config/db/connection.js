@@ -1,13 +1,16 @@
 const mongoose = require('mongoose');
 const dbConfig = require('./dbConfig');
 
-mongoose.Promise = global.Promise;
+async function ConnectDB() {
+    try {
+        const conn = await mongoose.connect(dbConfig.url);
+        console.log(`MongoDB connected successfully!!: ${conn.connection.host}`);
+    } catch (error) {
+        console.error(error.message);
+        process.exit(1);
+    }
+}
 
-mongoose.connect(dbConfig.url, { useNewUrlParser: true })
-    .then(() => {
-        console.log('Database connecteed successfully!!')
-    })
-    .catch(() => {
-        console.log('Could not connect to the database!!', err);
-        process.exit();
-    });
+module.exports = {
+    ConnectDB
+};
