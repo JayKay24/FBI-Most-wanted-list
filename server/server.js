@@ -2,7 +2,7 @@ const express = require('express');
 const cron = require('node-cron');
 const { ConnectDB } = require('./config/db/connection');
 
-const { beginETL } = require('./etl');
+const { beginETL } = require('./etl_pipelines/load_to_db');
 const { mostWantedRoutes } = require('./routes/getMostWanted');
 
 const PORT = 3000;
