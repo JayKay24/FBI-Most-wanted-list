@@ -20,6 +20,7 @@ mostWantedRoutes.get('/', searchBy, async (req, res) => {
             currentPage: page
         });
     } catch(err) {
+        console.log(err);
         // To do: log this error. It's critical to know if this route handler fails.
         throw new ServiceUnavailableException();
     }
