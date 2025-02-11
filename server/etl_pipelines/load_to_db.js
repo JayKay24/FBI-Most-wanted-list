@@ -1,20 +1,29 @@
 const { httpClient } = require('../config/httpClient');
 const { WantedProfileModel } = require('../repositories/models/WantedProfile');
 const { PurgeCycleModel } = require('../repositories/models/PurgeCycle');
-
-const MAX_ITEMS_TO_STORE = 100;
-const MAX_FETCHES_TO_FBI_API = 2; // should be 5 if we want to store 100 profiles at most, default pagination is 20 items
+const { ETL_Config } = require('../config/etl');
 
 async function beginETL() {
     console.log('ETL process has started...');
-    await purgeOldRecords();
 
     try {
-        outer: for (let i = 0; i < MAX_FETCHES_TO_FBI_API; i++) { // each request fetches 20 items, store 100 in total in our db
+        if (ETL_Config.DB_HAS_ENOUGH_PROFILES) { // for local development only to avoid over-fetching and rate limiting issues
+            const countOfProfiles = await WantedProfileModel.countDocuments({}).exec();
+            if (countOfProfiles >= 10) {
+                console.log('Db has enough profiles to begin work; stopping fetching from FBI API...');
+                return;
+            }
+        }
+
+        await purgeOldRecords();
+
+        outer: for (let i = 0; i < ETL_Config.MAX_FETCHES_TO_FBI_API; i++) { // each request fetches 20 items, store 100 in total in our db
+            console.log('Beginning fetching...');
             const { data: { items } } = await httpClient.get('/');
+            console.log('fetched successfully...', items);
 
             for (let i = 0; i < items.length; i++) {
-                if (i === MAX_ITEMS_TO_STORE) break outer;
+                if (i === ETL_Config.MAX_ITEMS_TO_STORE) break outer;
                 
                 const wantedProfile = new WantedProfileModel({
                     name: items[i].name,
@@ -49,14 +58,16 @@ async function beginETL() {
         // To do: log this error in ELK. It's critical to know if the ETL process fails.
         console.log(error);
         console.log('Failed!!', error.message);
+    } finally {
+        console.log('ETL process has ended.');
     }
-
-    console.log('ETL process has ended.');
 }
 
 async function purgeOldRecords() {
+    console.log('Purging old records...');
     const lastPurgeCycle = await PurgeCycleModel.findOne({});
     await WantedProfileModel.deleteMany({ createdAt: { $lt: lastPurgeCycle.last_purge_date } });
+    console.log('Old records purged successfully.');
 }
 
 function sleep(ms) {

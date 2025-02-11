@@ -12,7 +12,7 @@ services:
   server:
     depends_on:
       - fbi_most_wanted_db
-    image: jaykay24/fbi-most-wanted:1.0.0
+    image: jaykay24/fbi-most-wanted-server:1.0.0
     ports:
       - "3000:3000"
     restart: always
