@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 import ListMostWantedProfiles from './pages/ListMostWantedProfiles';
