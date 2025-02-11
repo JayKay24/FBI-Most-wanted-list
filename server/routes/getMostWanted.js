@@ -1,7 +1,6 @@
 const { Router } = require('express');
 const { WantedProfileModel } = require('../repositories/models/WantedProfile');
 const { ServiceUnavailableException } = require('../errors/503');
-const { paginate } = require('../utils/paginator');
 const { searchBy } = require('../middleware/searchBy');
 
 const mostWantedRoutes = Router();
@@ -9,8 +8,11 @@ const mostWantedRoutes = Router();
 mostWantedRoutes.get('/', searchBy, async (req, res) => {
     const { page = 1, limit = 10 } = req.query;
     try {
-        const query = await WantedProfileModel.find({});
-        const wantedProfiles = await paginate(query, page, limit);
+        const wantedProfiles = await WantedProfileModel
+            .find({})
+            .limit(limit * 1) // make sure it's a number and not a string
+            .skip((pagege - 1) * limit)
+            .exec();
 
         const count = await WantedProfileModel.countDocuments({}).exec();
 

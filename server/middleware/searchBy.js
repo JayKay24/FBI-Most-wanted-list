@@ -1,15 +1,16 @@
 const WantedProfileModel = require('../repositories/models/WantedProfile');
-const paginator = require('../utils/paginator');
 
 async function searchBy(req, res, next) {
     const { page = 1, limit = 10 } = req.query;
     const { search = '' } = req.params;
     if (!search) return next();
 
-    const query = await WantedProfileModel.find({ $or: [{ name: search }, { hair: search }] });
+    const wantedProfiles = await WantedProfileModel
+        .find({ $or: [{ name: search }, { hair: search }] })
+        .limit(limit * 1) // make sure it's a number and not a string
+        .skip((page - 1) * limit)
+        .exec();
     const count = await WantedProfileModel.countDocuments({ $or: [{ name: search }, { hair: search }] }).exec();
-
-    const wantedProfiles = await paginator(query, page, limit);
 
     return res.status(200).json({
         wantedProfiles,
