@@ -13,7 +13,7 @@ const ListMostWantedProfiles = () => {
     isLoading } = useFetchMostWantedProfiles(HttpClient.baseURL, currentPage, HttpClient.itemsPerPage);
 
   return (
-    <>
+    <div>
       {isLoading && (<span>Loading...</span>)}
       {data && data.wantedProfiles?.length ===0 && (<div>Currently, there are no wanted profiles. Please check back later</div>)}
       {data && data.wantedProfiles?.map((wantedProfile) => (
@@ -22,7 +22,7 @@ const ListMostWantedProfiles = () => {
         </Link>
       ))}
       {data && <Paginator totalPages={data?.totalPages} setCurrentPage={setCurrentPage} />}
-    </>
+    </div>
   );
 };
 
