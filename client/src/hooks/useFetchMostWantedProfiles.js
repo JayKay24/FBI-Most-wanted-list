@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const useFetchWantedProfiles = (path, page = 1, limit = 10) => {
+const useFetchMostWantedProfiles = (path, page = 1, limit = 10) => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(false);
   
@@ -27,4 +27,4 @@ const useFetchWantedProfiles = (path, page = 1, limit = 10) => {
   return { data, isLoading };
 };
 
-export default useFetchWantedProfiles;
+export default useFetchMostWantedProfiles;
