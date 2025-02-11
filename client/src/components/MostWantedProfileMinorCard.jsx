@@ -7,10 +7,10 @@ const MostWantedProfileMinorCard = ({ wantedProfile }) => {
 
   return (
     <div>
-      <img src={images[0].thumb} alt={images[0].caption} />
+      <img src={images ? images[0].thumb : ''} alt={images ? images[0].caption : ''} />
       <h3>Name: {title}</h3>
       <p>Sex: {sex}</p>
-      <p>Subjects: {subjects.join(', ')}</p>
+      <p>Subjects: {subjects ? subjects.join(', ') : ''}</p>
     </div>
   );
 };

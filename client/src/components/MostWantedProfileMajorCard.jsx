@@ -19,10 +19,10 @@ const MostWantedProfileMajorCard = ({ wantedProfile }) => {
       <h2>{name}</h2>
       <p>Sex: {sex}</p>
       <p>Hair: {hair}</p>
-      <p>Occupations: {occupations.join(', ')}</p>
-      <p>Subjects: {subjects.join(', ')}</p>
-      <p>Field Offices: {field_offices.join(', ')}</p>
-      <img src={images[0].large} alt={images[0].caption} />
+      <p>Occupations: {occupations ? occupations.join(', ') : ''}</p>
+      <p>Subjects: {subjects ? subjects.join(', ') : ''}</p>
+      <p>Field Offices: {field_offices ? field_offices.join(', ') : ''}</p>
+      <img src={images ? images[0].large : ''} alt={images ? images[0].caption : ''} />
       <p>More Details: {pathId}</p>
     </div>
   );
