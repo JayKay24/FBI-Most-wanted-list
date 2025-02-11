@@ -1,10 +1,24 @@
+import React from 'react';
+import { Link, Route, Routes } from 'react-router-dom';
+import ListMostWantedProfiles from './pages/ListMostWantedProfiles';
+import DisplayMostWantedProfile from './pages/DisplayMostWantedProfile';
+
 function App() {
   return (
-    <main>
-      <div>PlaceHolder Nav</div>
+    <section>
+      <nav>
+        <h2>
+          <Link to='/'>Home</Link>
+        </h2>
+      </nav>
       <hr />
-      <div>Placeholder main</div>
-    </main>
+      <main>
+        <Routes>
+          <Route path='/' element={<ListMostWantedProfiles />} />
+          <Route path='/wanted_profiles/:id' element={<DisplayMostWantedProfile />} />
+        </Routes>
+      </main>
+    </section>
   )
 }
 

@@ -13,17 +13,15 @@ const ListMostWantedProfiles = () => {
     isLoading } = useFetchMostWantedProfiles(HttpClient.baseURL, currentPage, HttpClient.itemsPerPage);
 
   return (
-    <div>
+    <>
       {isLoading && (<span>Loading...</span>)}
       {wantedProfiles?.length == 0 && (<div>Currently, there are no wanted profiles. Please check back later</div>)}
       {wantedProfiles?.map((wantedProfile) => (
-        <div>
-          <Link key={wantedProfile._id} to={`/wanted_profiles/${wantedProfile._id}`}>
-            <WantedProfileCard key={wantedProfile._id} wantedProfile={wantedProfile} />
-          </Link>
-        </div>
+        <Link key={wantedProfile._id} to={`/wanted_profiles/${wantedProfile._id}`}>
+          <MostWantedProfileMinorCard key={wantedProfile._id} wantedProfile={wantedProfile} />
+        </Link>
       ))}
-    </div>
+    </>
   );
 };
 
