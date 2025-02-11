@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
+import StyledPaginator from '../styled/components/Paginator';
 
 function getPageNumbers(totalPages) {
   const pages = [];
@@ -21,7 +22,7 @@ const Paginator = ({ totalPages, setCurrentPage }) => {
   };
 
   return (
-    <div>
+    <StyledPaginator>
       {pageNumbers.map((number) => (
         <button 
           key={number}
@@ -31,7 +32,7 @@ const Paginator = ({ totalPages, setCurrentPage }) => {
         </button>
         ))
       }
-    </div>
+    </StyledPaginator>
   );
 };
 
