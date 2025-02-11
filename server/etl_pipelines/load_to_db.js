@@ -3,13 +3,14 @@ const { WantedProfileModel } = require('../repositories/models/WantedProfile');
 const { PurgeCycleModel } = require('../repositories/models/PurgeCycle');
 
 const MAX_ITEMS_TO_STORE = 100;
+const MAX_FETCHES_TO_FBI_API = 2; // should be 5 if we want to store 100 profiles at most, default pagination is 20 items
 
 async function beginETL() {
     console.log('ETL process has started...');
     await purgeOldRecords();
 
     try {
-        outer: for (let i = 0; i < 5; i++) { // each request fetches 20 items, store 100 in total in our db
+        outer: for (let i = 0; i < MAX_FETCHES_TO_FBI_API; i++) { // each request fetches 20 items, store 100 in total in our db
             const { data: { items } } = await httpClient.get('/');
 
             for (let i = 0; i < items.length; i++) {
