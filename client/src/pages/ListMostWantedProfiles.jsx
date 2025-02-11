@@ -8,17 +8,14 @@ import MostWantedProfileMinorCard from '../components/MostWantedProfileMinorCard
 const ListMostWantedProfiles = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const { 
-    data: { 
-      wantedProfiles,
-      totalPages,
-    }, 
+    data, 
     isLoading } = useFetchMostWantedProfiles(HttpClient.baseURL, currentPage, HttpClient.itemsPerPage);
 
   return (
     <>
       {isLoading && (<span>Loading...</span>)}
-      {wantedProfiles?.length == 0 && (<div>Currently, there are no wanted profiles. Please check back later</div>)}
-      {wantedProfiles?.map((wantedProfile) => (
+      {data && data.wantedProfiles?.length == 0 && (<div>Currently, there are no wanted profiles. Please check back later</div>)}
+      {data && data.wantedProfiles?.map((wantedProfile) => (
         <Link key={wantedProfile._id} to={`/wanted_profiles/${wantedProfile._id}`}>
           <MostWantedProfileMinorCard key={wantedProfile._id} wantedProfile={wantedProfile} />
         </Link>

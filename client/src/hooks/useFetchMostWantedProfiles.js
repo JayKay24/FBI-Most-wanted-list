@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const useFetchMostWantedProfiles = (path, page = 1, limit = 10) => {
-  const [data, setData] = useState();
+  const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   
   useEffect(() => {
