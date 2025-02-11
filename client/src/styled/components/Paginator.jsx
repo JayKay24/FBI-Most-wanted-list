@@ -3,6 +3,7 @@ import styled from 'styled-components';
 const StyledPaginator = styled.div`
   border: 1px solid black;
   padding: 10px;
+  margin: 10px 5px 5px 5px;;
   text-align: center;
 
   > button {

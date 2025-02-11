@@ -5,6 +5,7 @@ import useFetchMostWantedProfiles from '../hooks/useFetchMostWantedProfiles';
 import HttpClient from '../config/httpClient';
 import MostWantedProfileMinorCard from '../components/MostWantedProfileMinorCard';
 import Paginator from '../components/Paginator';
+import StyledListWantedProfiles from '../styled/components/ListMostWantedProfiles';
 
 const ListMostWantedProfiles = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -13,16 +14,18 @@ const ListMostWantedProfiles = () => {
     isLoading } = useFetchMostWantedProfiles(HttpClient.baseURL, currentPage, HttpClient.itemsPerPage);
 
   return (
-    <div>
-      {isLoading && (<span>Loading...</span>)}
-      {data && data.wantedProfiles?.length ===0 && (<div>Currently, there are no wanted profiles. Please check back later</div>)}
-      {data && data.wantedProfiles?.map((wantedProfile) => (
-        <Link key={wantedProfile._id} to={`/wanted_profiles/${wantedProfile._id}`}>
-          <MostWantedProfileMinorCard key={wantedProfile._id} wantedProfile={wantedProfile} />
-        </Link>
-      ))}
+    <>
+      <StyledListWantedProfiles>
+        {isLoading && (<span>Loading...</span>)}
+        {data && data.wantedProfiles?.length ===0 && (<div>Currently, there are no wanted profiles. Please check back later</div>)}
+        {data && data.wantedProfiles?.map((wantedProfile) => (
+          <Link key={wantedProfile._id} to={`/wanted_profiles/${wantedProfile._id}`}>
+            <MostWantedProfileMinorCard key={wantedProfile._id} wantedProfile={wantedProfile} />
+          </Link>
+        ))}
+      </StyledListWantedProfiles>
       {data && <Paginator totalPages={data?.totalPages} setCurrentPage={setCurrentPage} />}
-    </div>
+    </>
   );
 };
 
