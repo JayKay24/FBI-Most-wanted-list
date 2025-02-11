@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+// eslint-disable-next-line no-unused-vars
 import React from 'react';
 
 const MostWantedProfileMinorCard = ({ wantedProfile }) => {
@@ -9,7 +10,7 @@ const MostWantedProfileMinorCard = ({ wantedProfile }) => {
       <img src={images[0].thumb} alt={images[0].caption} />
       <h3>Name: {title}</h3>
       <p>Sex: {sex}</p>
-      <p>Subjects: {subjects[0] ? subjects[0] : 'None'}</p>
+      <p>Subjects: {subjects.join(', ')}</p>
     </div>
   );
 };

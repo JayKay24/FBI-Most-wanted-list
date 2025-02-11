@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 
-const MostWantedProfileMajorCard = (mostWantedProfile) => {
+const MostWantedProfileMajorCard = ({ wantedProfile }) => {
   const { 
     name,
     sex,
@@ -11,7 +12,7 @@ const MostWantedProfileMajorCard = (mostWantedProfile) => {
     field_offices,
     images,
     pathId
-  } = mostWantedProfile;
+  } = wantedProfile;
 
   return (
     <div>
