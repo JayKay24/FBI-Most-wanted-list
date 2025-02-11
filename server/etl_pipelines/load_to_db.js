@@ -65,8 +65,13 @@ async function beginETL() {
 
 async function purgeOldRecords() {
     console.log('Purging old records...');
+    const countPurgedRecords = await PurgeCycleModel.countDocuments({}).exec();
+    if (countPurgedRecords === 0) {
+        console.log('No records to purge.');
+        return;
+    }
     const lastPurgeCycle = await PurgeCycleModel.findOne({});
-    await WantedProfileModel.deleteMany({ createdAt: { $lt: lastPurgeCycle.last_purge_date } });
+    await WantedProfileModel.deleteMany({ createdAt: { $lt: lastPurgeCycle.createdAt } });
     console.log('Old records purged successfully.');
 }
 
