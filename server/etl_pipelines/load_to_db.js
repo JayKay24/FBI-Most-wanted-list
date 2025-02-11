@@ -21,6 +21,11 @@ async function beginETL() {
         outer: for (let i = 0; i < ETL_Config.MAX_FETCHES_TO_FBI_API; i++) { // each request fetches 20 items, store 100 in total in our db
             console.log('Beginning fetching...');
             const { data: { items } } = await axios.get('https://api.fbi.gov/wanted/v1/list', {
+                headers: {
+                    'Accept': 'application/json',
+                    'Accept-Encoding': 'gzip, deflate, br',
+                    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36'
+                },
                 params: {
                     page: i + 1
                 }
