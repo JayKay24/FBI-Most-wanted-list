@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import useFetchMostWantedProfiles from '../hooks/useFetchMostWantedProfiles';
 import HttpClient from '../config/httpClient';
+import MostWantedProfileMinorCard from '../components/MostWantedProfileMinorCard';
 
 const ListMostWantedProfiles = () => {
   const [currentPage, setCurrentPage] = useState(1);

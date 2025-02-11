@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import useFetchMostWantedProfiles from '../hooks/useFetchMostWantedProfiles';
 import HttpClient from '../config/httpClient';
+import MostWantedProfileMajorCard from '../components/MostWantedProfileMajorCard';
 
 const DisplayMostWantedProfile = () => {
   const { id: wantedProfileId } = useParams();
