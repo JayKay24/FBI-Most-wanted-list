@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const useFetchMostWantedProfiles = (path, page = 1, limit = 10) => {
+const useFetchMostWantedProfiles = (path, search, page = 1, limit = 10) => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   
@@ -12,7 +12,8 @@ const useFetchMostWantedProfiles = (path, page = 1, limit = 10) => {
         const { data: res } = await axios.get(path, {
           params: {
             page,
-            limit
+            limit,
+            search
           }
         });
         setData(res);
@@ -22,7 +23,7 @@ const useFetchMostWantedProfiles = (path, page = 1, limit = 10) => {
         setIsLoading(false);
       }
     })()
-  }, [path, page, limit]);
+  }, [path, page, limit, search]);
 
   return { data, isLoading };
 };

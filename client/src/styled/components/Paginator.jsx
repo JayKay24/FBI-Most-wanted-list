@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const StyledPaginator = styled.div`
+  background-color: white;
   border: 1px solid black;
   padding: 10px;
   margin: 10px 5px 5px 5px;;
