@@ -6,7 +6,8 @@ const StyledPaginator = styled.div`
   text-align: center;
 
   > button {
-    border: 1px solid azure;
+    background-color: azure;
+    border: 1px solid black;
     display: inline-block;
     height: 50px;
     margin-left: 5px;
@@ -14,7 +15,7 @@ const StyledPaginator = styled.div`
     width: 50px;
 
     &:hover {
-      background-color: azure;
+      background-color: cyan;
       cursor: pointer;
     }
   }

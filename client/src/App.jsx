@@ -4,10 +4,11 @@ import { Link, Route, Routes } from 'react-router-dom';
 import ListMostWantedProfiles from './pages/ListMostWantedProfiles';
 import DisplayMostWantedProfile from './pages/DisplayMostWantedProfile';
 import StyledNav from './styled/components/Navigation';
+import StyledContainer from './styled/components/Container';
 
 function App() {
   return (
-    <section>
+    <StyledContainer>
       <StyledNav>
         <h2>
           <Link to='/'>Home</Link>
@@ -20,7 +21,7 @@ function App() {
           <Route path='/wanted_profiles/:id' element={<DisplayMostWantedProfile />} />
         </Routes>
       </main>
-    </section>
+    </StyledContainer>
   )
 }
 
