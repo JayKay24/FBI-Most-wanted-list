@@ -3,7 +3,6 @@ class ServiceUnavailableException extends Error {
         super(message);
         this.status = 503;
         this.message = message;
-      }
     }
 }
 
