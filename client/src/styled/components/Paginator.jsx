@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 const StyledPaginator = styled.div`
+  border: 1px solid black;
   padding: 10px;
   text-align: center;
 
   > button {
-    border: 1px solid cyan;
-    color: blue;
+    border: 1px solid azure;
     display: inline-block;
     height: 50px;
     margin-left: 5px;
@@ -14,7 +14,7 @@ const StyledPaginator = styled.div`
     width: 50px;
 
     &:hover {
-      background-color: cyan;
+      background-color: azure;
       cursor: pointer;
     }
   }

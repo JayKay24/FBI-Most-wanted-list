@@ -3,15 +3,16 @@ import React from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 import ListMostWantedProfiles from './pages/ListMostWantedProfiles';
 import DisplayMostWantedProfile from './pages/DisplayMostWantedProfile';
+import StyledNav from './styled/components/Navigation';
 
 function App() {
   return (
     <section>
-      <nav>
+      <StyledNav>
         <h2>
           <Link to='/'>Home</Link>
         </h2>
-      </nav>
+      </StyledNav>
       <hr />
       <main>
         <Routes>
