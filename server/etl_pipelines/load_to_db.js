@@ -1,4 +1,5 @@
-const { httpClient } = require('../config/httpClient');
+// const { httpClient } = require('../config/httpClient');
+const axios = require('axios');
 const { WantedProfileModel } = require('../repositories/models/WantedProfile');
 const { PurgeCycleModel } = require('../repositories/models/PurgeCycle');
 const { ETL_Config } = require('../config/etl');
@@ -19,7 +20,11 @@ async function beginETL() {
 
         outer: for (let i = 0; i < ETL_Config.MAX_FETCHES_TO_FBI_API; i++) { // each request fetches 20 items, store 100 in total in our db
             console.log('Beginning fetching...');
-            const { data: { items } } = await httpClient.get('/');
+            const { data: { items } } = await axios.get('https://api.fbi.gov/wanted/v1/list', {
+                params: {
+                    page: i + 1
+                }
+            });
             console.log('fetched successfully...', items);
 
             for (let i = 0; i < items.length; i++) {
