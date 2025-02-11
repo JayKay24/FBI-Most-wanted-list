@@ -7,6 +7,8 @@ const MAX_ITEMS_TO_STORE = 100;
 
 async function beginETL() {
     console.log('ETL process has started...');
+    await purgeOldRecords();
+
     try {
         for (let i = 0; i < 5; i++) { // each request fetches 20 items, store 100 in total in our db
             const { data: { items } } = await httpClient.get('/');
@@ -44,11 +46,17 @@ async function beginETL() {
         const newCycle = new PurgeCycleModel({});
         await newCycle.save();
     } catch (error) {
+        // To do: log this error. It's critical to know if the ETL process fails.
         console.log('Failed!!', error.message);
         fs.writeFileSync('./error.txt', JSON.stringify(error, null, 2));
     }
 
     console.log('ETL process has ended.');
+}
+
+async function purgeOldRecords() {
+    const lastPurgeCycle = await PurgeCycleModel.findOne({});
+    await WantedProfileModel.deleteMany({ createdAt: { $lt: lastPurgeCycle.last_purge_date } });
 }
 
 function sleep(ms) {
