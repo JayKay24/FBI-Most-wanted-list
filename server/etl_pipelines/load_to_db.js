@@ -1,4 +1,3 @@
-const fs = require('fs');
 const { httpClient } = require('../config/httpClient');
 const { WantedProfileModel } = require('../repositories/models/WantedProfile');
 const { PurgeCycleModel } = require('../repositories/models/PurgeCycle');
@@ -10,11 +9,11 @@ async function beginETL() {
     await purgeOldRecords();
 
     try {
-        for (let i = 0; i < 5; i++) { // each request fetches 20 items, store 100 in total in our db
+        outer: for (let i = 0; i < 5; i++) { // each request fetches 20 items, store 100 in total in our db
             const { data: { items } } = await httpClient.get('/');
 
             for (let i = 0; i < items.length; i++) {
-                if (i === MAX_ITEMS_TO_STORE) break;
+                if (i === MAX_ITEMS_TO_STORE) break outer;
                 
                 const wantedProfile = new WantedProfileModel({
                     name: items[i].name,
@@ -46,9 +45,9 @@ async function beginETL() {
         const newCycle = new PurgeCycleModel({});
         await newCycle.save();
     } catch (error) {
-        // To do: log this error. It's critical to know if the ETL process fails.
+        // To do: log this error in ELK. It's critical to know if the ETL process fails.
+        console.log(error);
         console.log('Failed!!', error.message);
-        fs.writeFileSync('./error.txt', JSON.stringify(error, null, 2));
     }
 
     console.log('ETL process has ended.');
