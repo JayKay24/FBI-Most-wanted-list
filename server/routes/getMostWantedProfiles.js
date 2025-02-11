@@ -2,6 +2,8 @@ const { Router } = require('express');
 const { WantedProfileModel } = require('../repositories/models/WantedProfile');
 const { ServiceUnavailableException } = require('../errors/503');
 const { searchBy } = require('../middleware/searchBy');
+const { validateId } = require('../middleware/validation');
+const { NotFoundException } = require('../errors/404');
 
 const mostWantedRoutes = Router();
 
@@ -26,6 +28,16 @@ mostWantedRoutes.get('/', searchBy, async (req, res) => {
         // To do: log this error. It's critical to know if this route handler fails.
         throw new ServiceUnavailableException();
     }
+});
+
+mostWantedRoutes.get('/:id', validateId, async (req, res) => {
+    const { id } = req.params;
+    const wantedProfile = await WantedProfileModel.findById(id).exec();
+    if (!wantedProfile) {
+        throw new NotFoundException();
+    }
+
+    return res.status(200).json({ ...wantedProfile });
 });
 
 module.exports = {

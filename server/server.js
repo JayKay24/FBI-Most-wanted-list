@@ -4,7 +4,7 @@ const cors = require('cors');
 
 const { ConnectDB } = require('./config/db/connection');
 const { beginETL } = require('./etl_pipelines/load_to_db');
-const { mostWantedRoutes } = require('./routes/getMostWanted');
+const { mostWantedRoutes } = require('./routes/getMostWantedProfiles');
 
 const PORT = 3000;
 const app = express();
