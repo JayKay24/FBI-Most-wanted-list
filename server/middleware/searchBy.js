@@ -1,12 +1,11 @@
-const WantedProfileModel = require('../repositories/models/WantedProfile');
+const { WantedProfileModel } = require('../repositories/models/WantedProfile');
 
 async function searchBy(req, res, next) {
-    const { page = 1, limit = 10 } = req.query;
-    const { search = '' } = req.params;
+    const { page = 1, limit = 10, search = '' } = req.query;
     if (!search) return next();
 
     const wantedProfiles = await WantedProfileModel
-        .find({ $or: [{ name: search }, { hair: search }] })
+        .find({ $or: [{ name: search }, { hair: search }, { sex: search }] })
         .limit(limit * 1) // make sure it's a number and not a string
         .skip((page - 1) * limit)
         .exec();

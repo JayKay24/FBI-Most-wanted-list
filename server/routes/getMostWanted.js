@@ -11,7 +11,7 @@ mostWantedRoutes.get('/', searchBy, async (req, res) => {
         const wantedProfiles = await WantedProfileModel
             .find({})
             .limit(limit * 1) // make sure it's a number and not a string
-            .skip((pagege - 1) * limit)
+            .skip((page - 1) * limit)
             .exec();
 
         const count = await WantedProfileModel.countDocuments({}).exec();
