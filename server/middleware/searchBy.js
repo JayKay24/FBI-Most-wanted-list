@@ -5,7 +5,17 @@ async function searchBy(req, res, next) {
     if (!search) return next();
 
     const wantedProfiles = await WantedProfileModel
-        .find({ $or: [{ name: search }, { hair: search }, { sex: search }] })
+        .find({ $or: [
+            { name: search },
+            { hair: search },
+            { sex: search },
+            { title: search },
+            { race_raw: search },
+            { nationality: search },
+            { complexion: search },
+            { eyes: search }
+            ] 
+        })
         .limit(limit * 1) // make sure it's a number and not a string
         .skip((page - 1) * limit)
         .exec();
