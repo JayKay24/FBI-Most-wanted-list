@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+// eslint-disable-next-line no-unused-vars
 import React, { Component } from 'react';
 
 export default class ErrorBoundary extends Component {
@@ -6,6 +8,7 @@ export default class ErrorBoundary extends Component {
     this.state = { hasError: false };
   }
 
+  // eslint-disable-next-line no-unused-vars
   static getDerivedStateFromError(error) {
     return { hasError: true };
   }

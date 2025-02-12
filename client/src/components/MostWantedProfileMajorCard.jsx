@@ -3,7 +3,7 @@
 import React from 'react';
 import StyledMostWantedProfileMajorCard from '../styled/components/MostWantedProfileMajorCard';
 
-const MostWantedProfileMajorCard = ({ wantedProfile }) => {
+const MostWantedProfileMajorCard = ({ wantedProfile, testId = 'major-card' }) => {
   const { 
     title,
     sex,
@@ -17,7 +17,7 @@ const MostWantedProfileMajorCard = ({ wantedProfile }) => {
   } = wantedProfile;
 
   return (
-    <StyledMostWantedProfileMajorCard>
+    <StyledMostWantedProfileMajorCard data-testid={testId}>
       <h2>Title: {title}</h2>
       <p>Sex: {sex}</p>
       <p>Hair: {hair}</p>
