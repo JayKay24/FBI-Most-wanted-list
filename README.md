@@ -2,8 +2,8 @@
 Web application that integrates with FBI Most wanted API to display a list of most wanted profiles.
 
 ## Dependencies
-Docker
-Node20+
+1. [Docker](https://www.docker.com/)
+2. [Node20+](Node22)
 
 ## Running the application locally
 The above dependencies are mandatory. To run the application locally, follow these steps:
