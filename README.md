@@ -18,10 +18,13 @@ The above dependencies are mandatory. To run the application locally, follow the
 8. `docker build -t <YOUR_PREFERRED_USERNAME>/<YOUR_PREFERRED_SERVER_IMAGE_NAME>:1.0.0 .`
 9. `cd ..`
 10. Inside the docker-compose.yml file, replace the images referenced under the server and client sections with the full image names you provided in steps 4 and 6. You can run `$ docker image ls` to view your most recent image names that you built earlier.
-11. Inside the root directory of the project, run `docker compose up` to start up the entire application.
+11. Inside the root directory of the project, run `docker compose up` to start up the entire application. The client will be running on `http://localhost:3001` while the server is running on `http://localhost:3000/api/wanted`
 12. To stop the application, run `docker compose down`.
 
-Note: Ensure to use lowercase for you preferred image names when running `docker build -t <lowercase>/<lowercase>:1.0.0 .`
+Note:
+
+1. Ensure to use lowercase for your preferred image names when running docker build e.g `docker build -t <lowercase>/<lowercase>:1.0.0 .`
+2. Ensure your preferred image names are unique and different from each other e.g client image name should be different from server image name
 
 ## Running tests locally
 
