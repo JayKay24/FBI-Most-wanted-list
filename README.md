@@ -11,13 +11,17 @@ The above dependencies are mandatory. To run the application locally, follow the
 1. `$ git clone https://github.com/JayKay24/FBI-Most-wanted-list.git`
 2. `$ cd FBI-Most-wanted-list`
 3. Make sure docker is up and running
-4. `cd client && docker built -t <YOUR_PREFERRED_USERNAME>/<YOUR_PREFERRED_CLIENT_IMAGE_NAME>:1.0.0 .`
-5. `cd ..`
-6. `cd server && docker build -t <YOUR_PREFERRED_USERNAME>/<YOUR_PREFERRED_SERVER_IMAGE_NAME>:1.0.0 .`
-7. `cd ..`
-8. Inside the docker-compose.yml file, replace the images referenced under the server and client sections with the full image names you provided in steps 4 and 6. You can run `$ docker image ls` to view your most recent image names that you built earlier.
-9. Inside the root directory of the project, run `docker compose up` to start up the entire application.
-10. To stop the application, run `docker compose down`.
+4. `cd client`
+5. `docker build -t <YOUR_PREFERRED_USERNAME>/<YOUR_PREFERRED_CLIENT_IMAGE_NAME>:1.0.0 .`
+6. `cd ..`
+7. `cd server`
+8. `docker build -t <YOUR_PREFERRED_USERNAME>/<YOUR_PREFERRED_SERVER_IMAGE_NAME>:1.0.0 .`
+9. `cd ..`
+10. Inside the docker-compose.yml file, replace the images referenced under the server and client sections with the full image names you provided in steps 4 and 6. You can run `$ docker image ls` to view your most recent image names that you built earlier.
+11. Inside the root directory of the project, run `docker compose up` to start up the entire application.
+12. To stop the application, run `docker compose down`.
+
+Note: Ensure to use lowercase for you preferred image names when running `docker build -t <lowercase>/<lowercase>:1.0.0 .`
 
 ## Running tests locally
 
