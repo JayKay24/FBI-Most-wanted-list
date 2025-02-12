@@ -41,3 +41,7 @@ Notes:
 * I plan to implement more detailed error boundaries in the frontend. At the moment, I have implemented a global error boundary wrapping the entire component tree with a general error message. (Oops, something went wrong. Please check back again soon)
 * I plan on improving the search feature on the frontend; currently, it is possible to send a search query for an empty string to the backend, which will return an unfiltered, paginated response, similar to loading the application for the first time.
 * I plan to implement a filter feature using a select HTML element. This would complement the search feature to narrow down the results.
+
+## Loom video
+
+See video of how it works [here](https://www.loom.com/share/fcbb8f20b05a4d45b6affbcfc8671180?sid=54e1faca-9968-4bb5-a5e0-650552ea6116).
