@@ -31,7 +31,7 @@ $ npm run test
 ### Backend
 To do.
 
-Notes:
+## Notes
 
 * The application will wait for a maximum of 2 minutes to hydrate the empty mongodb database initially. This is because I'm running an etl process to fetch and store the items from the FBI API first to avoid calling the API on every request.
 * I plan on increasing the test coverage as time goes on. At the moment I've only tested two frontend components. Backend unit testing is yet to be implemented.
