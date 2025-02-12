@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import useFetchMostWantedProfiles from '../hooks/useFetchMostWantedProfiles';
 import HttpClient from '../config/httpClient';
 import MostWantedProfileMajorCard from '../components/MostWantedProfileMajorCard';
-import StyledDisplayMostWantedProfile from '../styled/components/DisplayMostWantedProfile';
+import StyledDisplayMostWantedProfile from '../styled/pages/DisplayMostWantedProfile';
 
 const DisplayMostWantedProfile = () => {
   const { id: wantedProfileId } = useParams();

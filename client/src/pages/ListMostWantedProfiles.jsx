@@ -5,7 +5,7 @@ import useFetchMostWantedProfiles from '../hooks/useFetchMostWantedProfiles';
 import HttpClient from '../config/httpClient';
 import MostWantedProfileMinorCard from '../components/MostWantedProfileMinorCard';
 import Paginator from '../components/Paginator';
-import StyledListWantedProfiles from '../styled/components/ListMostWantedProfiles';
+import StyledListWantedProfiles from '../styled/pages/ListMostWantedProfiles';
 import Search from '../components/Search';
 
 const ListMostWantedProfiles = () => {
