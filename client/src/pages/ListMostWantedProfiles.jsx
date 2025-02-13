@@ -8,6 +8,7 @@ import Paginator from '../components/Paginator';
 import StyledListWantedProfiles from '../styled/pages/ListMostWantedProfiles';
 import Search from '../components/Search';
 import FilterBy from '../components/FilterBy';
+import ResetAllParams from '../components/ResetAllParams';
 
 const ListMostWantedProfiles = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -17,7 +18,14 @@ const ListMostWantedProfiles = () => {
 
   const { 
     data, 
-    isLoading } = useFetchMostWantedProfiles(HttpClient.baseURL, searchValue, hairFilterValue, eyeFilterValue, currentPage, HttpClient.itemsPerPage);
+    isLoading } = useFetchMostWantedProfiles(
+      HttpClient.baseURL,
+      searchValue,
+      hairFilterValue,
+      eyeFilterValue,
+      currentPage,
+      HttpClient.itemsPerPage
+  );
 
   return (
     <>
@@ -27,6 +35,11 @@ const ListMostWantedProfiles = () => {
           hairFilterValue={hairFilterValue}
           setEyeFilterValue={setEyeFilterValue}
           eyeFilterValue={eyeFilterValue}
+        />
+        <ResetAllParams 
+          setSearchValue={setSearchValue}
+          setHairFilterValue={setHairFilterValue}
+          setEyeFilterValue={setEyeFilterValue}
         />
       </Search>
       <StyledListWantedProfiles>
