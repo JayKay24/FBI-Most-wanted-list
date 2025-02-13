@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
+import StyledReset from '../styled/components/Reset';
 
 const ResetAllParams = ({ setSearchValue, setHairFilterValue, setEyeFilterValue }) => {
   const handleReset = (e) => {
@@ -11,7 +12,9 @@ const ResetAllParams = ({ setSearchValue, setHairFilterValue, setEyeFilterValue 
   };
 
   return (
-    <button type='button' onClick={handleReset}>Reset All</button>
+    <StyledReset>
+      <button type='button' onClick={handleReset}>Reset All</button>
+    </StyledReset>
   );
 };
 

@@ -19,8 +19,10 @@ const Search = ({ setSearchValue, children }) => {
 
   return (
     <StyledSearch>
-      <input type='text' value={currentValue} onChange={handleChange} />
-      <button onClick={handleSearch}>Search</button>
+      <div className='params'>
+        <input type='text' value={currentValue} onChange={handleChange} />
+        <button onClick={handleSearch}>Search</button>
+      </div>
       {children}
     </StyledSearch>
   );
