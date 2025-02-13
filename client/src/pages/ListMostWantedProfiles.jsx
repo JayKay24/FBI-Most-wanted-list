@@ -7,17 +7,28 @@ import MostWantedProfileMinorCard from '../components/MostWantedProfileMinorCard
 import Paginator from '../components/Paginator';
 import StyledListWantedProfiles from '../styled/pages/ListMostWantedProfiles';
 import Search from '../components/Search';
+import FilterBy from '../components/FilterBy';
 
 const ListMostWantedProfiles = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchValue, setSearchValue] = useState('');
+  const [hairFilterValue, setHairFilterValue] = useState('');
+  const [eyeFilterValue, setEyeFilterValue] = useState('');
+
   const { 
     data, 
-    isLoading } = useFetchMostWantedProfiles(HttpClient.baseURL, searchValue, currentPage, HttpClient.itemsPerPage);
+    isLoading } = useFetchMostWantedProfiles(HttpClient.baseURL, searchValue, hairFilterValue, eyeFilterValue, currentPage, HttpClient.itemsPerPage);
 
   return (
     <>
-      <Search setSearchValue={setSearchValue} />
+      <Search setSearchValue={setSearchValue}>
+        <FilterBy
+          setHairFilterValue={setHairFilterValue}
+          hairFilterValue={hairFilterValue}
+          setEyeFilterValue={setEyeFilterValue}
+          eyeFilterValue={eyeFilterValue}
+        />
+      </Search>
       <StyledListWantedProfiles>
         {isLoading && (<span>Loading...</span>)}
         {data && data.wantedProfiles?.length ===0 && (<div>Currently, there are no wanted profiles. Please check back later</div>)}

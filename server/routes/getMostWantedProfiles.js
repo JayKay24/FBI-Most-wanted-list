@@ -4,10 +4,11 @@ const { ServiceUnavailableException } = require('../errors/503');
 const { searchBy } = require('../middleware/searchBy');
 const { validateId } = require('../middleware/validation');
 const { NotFoundException } = require('../errors/404');
+const { filterBy } = require('../middleware/filterBy');
 
 const mostWantedRoutes = Router();
 
-mostWantedRoutes.get('/', searchBy, async (req, res) => {
+mostWantedRoutes.get('/', searchBy, filterBy, async (req, res) => {
     const { page = 1, limit = 10 } = req.query;
     try {
         const wantedProfiles = await WantedProfileModel

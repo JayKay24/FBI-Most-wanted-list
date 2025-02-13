@@ -6,6 +6,20 @@ async function searchBy(req, res, next) {
 
     const wantedProfiles = await WantedProfileModel
         .find({ $or: [
+                { name: search },
+                { hair: search },
+                { sex: search },
+                { title: search },
+                { race_raw: search },
+                { nationality: search },
+                { complexion: search },
+                { eyes: search }
+            ] 
+        })
+        .limit(limit * 1) // make sure it's a number and not a string
+        .skip((page - 1) * limit)
+        .exec();
+    const count = await WantedProfileModel.countDocuments({ $or: [
             { name: search },
             { hair: search },
             { sex: search },
@@ -14,12 +28,8 @@ async function searchBy(req, res, next) {
             { nationality: search },
             { complexion: search },
             { eyes: search }
-            ] 
-        })
-        .limit(limit * 1) // make sure it's a number and not a string
-        .skip((page - 1) * limit)
-        .exec();
-    const count = await WantedProfileModel.countDocuments({ $or: [{ name: search }, { hair: search }] }).exec();
+        ] 
+    }).exec();
 
     return res.status(200).json({
         wantedProfiles,

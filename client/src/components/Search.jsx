@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import StyledSearch from '../styled/components/Search';
 
-const Search = ({ setSearchValue }) => {
+const Search = ({ setSearchValue, children }) => {
   const [currentValue, setCurrentValue] = useState('');
 
   const handleChange = (e) => {
@@ -21,6 +21,7 @@ const Search = ({ setSearchValue }) => {
     <StyledSearch>
       <input type='text' value={currentValue} onChange={handleChange} />
       <button onClick={handleSearch}>Search</button>
+      {children}
     </StyledSearch>
   );
 };
