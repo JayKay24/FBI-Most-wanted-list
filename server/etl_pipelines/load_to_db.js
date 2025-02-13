@@ -36,23 +36,24 @@ async function beginETL() {
                 if (i === ETL_Config.MAX_ITEMS_TO_STORE) break outer;
                 
                 const wantedProfile = new WantedProfileModel({
-                    name: items[i].name,
-                    sex: items[i].sex,
-                    hair: items[i].hair,
-                    dobs: items[i].dates_of_birth_used,
-                    occupations: items[i].occupations,
-                    caution: items[i].caution,
-                    nationality: items[i].nationality,
-                    complexion: items[i].complexion,
-                    eyes: items[i].eyes,
-                    subjects: items[i].subjects,
-                    aliases: items[i].aliases,
-                    title: items[i].title,
-                    race_raw: items[i].race_raw,
-                    pathId: items[i].pathId,
-                    languages: items[i].languages,
-                    field_offices: items[i].field_offices,
-                    images: items[i].images
+                    name: items[i]?.name?.toLowerCase(),
+                    sex: items[i]?.sex?.toLowerCase(),
+                    hair: items[i]?.hair?.toLowerCase(),
+                    dobs: lowerCaseArrayString(items[i]?.dates_of_birth_used),
+                    occupations: lowerCaseArrayString(items[i]?.occupations),
+                    caution: items[i]?.caution?.toLowerCase(),
+                    nationality: items[i]?.nationality?.toLowerCase(),
+                    complexion: items[i]?.complexion?.toLowerCase(),
+                    eyes: items[i]?.eyes?.toLowerCase(),
+                    subjects: lowerCaseArrayString(items[i]?.subjects),
+                    aliases: lowerCaseArrayString(items[i]?.aliases),
+                    title: items[i]?.title?.toLowerCase(),
+                    race_raw: items[i]?.race_raw?.toLowerCase(),
+                    pathId: items[i]?.pathId,
+                    languages: lowerCaseArrayString(items[i]?.languages),
+                    field_offices: lowerCaseArrayString(items[i]?.field_offices),
+                    url: items[i]?.url,
+                    images: items[i]?.images
                 });
 
                 await wantedProfile.save();
@@ -89,6 +90,19 @@ function sleep(ms) {
     return new Promise((resolve, reject) => {
         setTimeout(resolve, ms);
     });
+}
+
+function lowerCaseArrayString(arr) {
+    const formatted = [];
+
+    if (!arr) return formatted;
+
+    for (const str of arr) {
+        if (!str) continue; // skip empty strings or nulls
+        formatted.push(str?.toLowerCase());
+    }
+
+    return formatted;
 }
 
 module.exports = {

@@ -9,6 +9,7 @@ const MostWantedProfileMajorCard = ({ wantedProfile, testId = 'major-card' }) =>
     sex,
     hair,
     complexion,
+    caution,
     occupations,
     subjects,
     eyes,
@@ -23,10 +24,11 @@ const MostWantedProfileMajorCard = ({ wantedProfile, testId = 'major-card' }) =>
       <p>Hair: {hair}</p>
       <p>Complexion: {complexion}</p>
       <p>Eyes: {eyes}</p>
-      <p>Occupations: {occupations ? occupations.join(', ') : ''}</p>
-      <p>Subjects: {subjects ? subjects.join(', ') : ''}</p>
-      <p>Field Offices: {field_offices ? field_offices.join(', ') : ''}</p>
-      <img src={images ? images[0].large : ''} alt={images ? images[0].caption : ''} width={270} height={270} />
+      <p>Occupations: {occupations.join(', ')}</p>
+      <p>Subjects: {subjects.join(', ')}</p>
+      <p>Field Offices: {field_offices.join(', ')}</p>
+      <p>Caution: {caution}</p>
+      <img src={images?.[0]?.large ?? ''} alt={images?.[0]?.caption ?? ''} width={270} height={270} />
     </StyledMostWantedProfileMajorCard>
   );
 };

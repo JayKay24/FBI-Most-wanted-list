@@ -38,7 +38,7 @@ mostWantedRoutes.get('/:id', validateId, async (req, res) => {
         throw new NotFoundException();
     }
 
-    return res.status(200).json({ ...wantedProfile._doc });
+    return res.status(200).json(wantedProfile.toObject());
 });
 
 module.exports = {
