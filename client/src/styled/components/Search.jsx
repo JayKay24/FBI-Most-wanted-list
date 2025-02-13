@@ -17,6 +17,10 @@ const StyledSearch = styled.div`
     border: 1px solid black;
     margin-left: 5px;
   }
+
+  > label {
+    margin-left: 5px;
+  }
 `;
 
 export default StyledSearch;
