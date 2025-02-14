@@ -21,7 +21,6 @@ app.use((err, req, res, next) => {
 });
 
 ConnectDB();
-
 app.listen(PORT, () => {
     console.log(`Server is listening at port ${PORT}`);
 });

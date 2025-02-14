@@ -7,11 +7,22 @@ services:
       - "27017:27017"
     restart: always
     volumes:
-      - fbi_data:/data/db
+      - fbi_most_wanted:/data/db
+
+  fbi_most_wanted_cache:
+    depends_on:
+      - fbi_most_wanted_db
+    image: memcached:1.6-alpine
+    ports:
+      - "11211:11211"
+    command:
+      - --memory-limit=64
+    restart: always
 
   server:
     depends_on:
       - fbi_most_wanted_db
+      - fbi_most_wanted_cache
     image: jaykay24/fbi-most-wanted-server:1.0.0
     ports:
       - "3000:3000"
@@ -25,4 +36,4 @@ services:
       - "3001:3000"
     restart: always
 volumes:
-  fbi_data:
+  fbi_most_wanted:
