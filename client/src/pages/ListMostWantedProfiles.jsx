@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import PuffLoader from 'react-spinners/PuffLoader';
 import useFetchMostWantedProfiles from '../hooks/useFetchMostWantedProfiles';
 import HttpClient from '../config/httpClient';
 import MostWantedProfileMinorCard from '../components/MostWantedProfileMinorCard';
@@ -43,7 +44,7 @@ const ListMostWantedProfiles = () => {
         />
       </Search>
       <StyledListWantedProfiles>
-        {isLoading && (<span>Loading...</span>)}
+        {isLoading && (<PuffLoader color='cyan' size={150} />)}
         {data && data.wantedProfiles?.length ===0 && (<div>Currently, there are no wanted profiles. Please check back later</div>)}
         {data && data.wantedProfiles?.map((wantedProfile) => (
           <Link key={wantedProfile._id} to={`/wanted_profiles/${wantedProfile._id}`}>
