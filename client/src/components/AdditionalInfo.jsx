@@ -3,11 +3,11 @@
 import React, { useState } from 'react';
 import StyledAdditionalInfo from '../styled/components/AdditionalInfo';
 
-const AdditionalInfo = ({ url }) => {
+const AdditionalInfo = ({ url, testId = 'additional-info' }) => {
   const [toggleAdditionalInfo, setToggleAdditionalInfo] = useState(false);
   
   return (
-    <StyledAdditionalInfo onClick={() => setToggleAdditionalInfo(!toggleAdditionalInfo)}>
+    <StyledAdditionalInfo onClick={() => setToggleAdditionalInfo(!toggleAdditionalInfo)} data-testid={testId}>
       { !toggleAdditionalInfo && (
         <div>
           Additional Information
