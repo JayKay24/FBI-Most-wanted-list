@@ -4,9 +4,9 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import MostWantedProfile from '../../utils/mockMostWantedProfile.json';
+import MostWantedProfile from '../utils/mockMostWantedProfile.json';
 
-import AdditionalInfo from '../AdditionalInfo';
+import AdditionalInfo from '../components/AdditionalInfo';
 
 describe('AdditionalInfo: rendering', () => {
   it('renders the url passed in', () => {

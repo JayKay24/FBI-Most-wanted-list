@@ -3,9 +3,9 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import MostWantedProfile from '../../utils/mockMostWantedProfile.json';
+import MostWantedProfile from '../utils/mockMostWantedProfile.json';
 
-import MostWantedProfileMinorCard from '../MostWantedProfileMinorCard';
+import MostWantedProfileMinorCard from '../components/MostWantedProfileMinorCard';
 
 describe('MostWantedProfileMinorCard: rendering', () => {
   it('renders fewer details of a most wanted profile', () => {
