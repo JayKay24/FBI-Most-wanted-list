@@ -45,8 +45,8 @@ const ListMostWantedProfiles = () => {
       </Search>
       <StyledListWantedProfiles>
         {isLoading && (<PuffLoader color='cyan' size={150} />)}
-        {data && data.wantedProfiles?.length ===0 && (<div>Currently, there are no wanted profiles. Please check back later</div>)}
-        {data && data.wantedProfiles?.map((wantedProfile) => (
+        {!isLoading && data && data.wantedProfiles?.length === 0 && (<div>Currently, there are no wanted profiles. Please check back later</div>)}
+        {!isLoading && data && data.wantedProfiles?.map((wantedProfile) => (
           <Link key={wantedProfile._id} to={`/wanted_profiles/${wantedProfile._id}`}>
             <MostWantedProfileMinorCard key={wantedProfile._id} wantedProfile={wantedProfile} />
           </Link>
