@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 module.exports = {
-  url: 'fbi_most_wanted_cache:11211'
+  url: process.env.MEMCACHED_URI || 'fbi_most_wanted_cache:11211'
 };

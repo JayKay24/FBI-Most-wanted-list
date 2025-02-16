@@ -26,6 +26,9 @@ services:
     image: jaykay24/fbi-most-wanted-server:1.0.0
     ports:
       - "3000:3000"
+    environment:
+      - "MEMCACHED_URI=${MEMCACHED_URI}"
+      - "MONGODB_URI=${MONGODB_URI}"
     restart: always
 
   client:

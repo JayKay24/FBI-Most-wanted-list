@@ -1,24 +1,9 @@
-const express = require('express');
 const cron = require('node-cron');
-const cors = require('cors');
-
+const { app } = require('./app');
 const { ConnectDB } = require('./config/db/connection');
 const { beginETL } = require('./etl_pipelines/load_to_db');
-const { mostWantedRoutes } = require('./routes/getMostWantedProfiles');
 
 const PORT = 3000;
-const app = express();
-
-app.use(cors());
-
-app.use('/api/wanted', mostWantedRoutes);
-
-app.use((err, req, res, next) => {
-    const status = err.status || 500;
-    const message = err.message || 'Internal Server Error';
-
-    return res.status(status).json({ error: message });
-});
 
 ConnectDB();
 app.listen(PORT, () => {
